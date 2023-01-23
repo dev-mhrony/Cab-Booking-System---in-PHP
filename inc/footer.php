@@ -66,7 +66,7 @@ $(document).ready(function() {
 <!-- Footer-->
 <footer class="py-4 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">&copy; <?php echo $_settings->info('short_name') ?> <?php echo date('Y');?> >> Developed By: Juan Carlos Montero oretnom23</p>
+        <p class="m-0 text-center text-white">&copy; <?php echo $_settings->info('short_name') ?> <?php echo date('Y');?> >> Developed By: <a href="https://developerrony.com">MH RONY</a>|| Code Camp BD</p>
     </div>
 </footer>
 
