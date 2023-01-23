@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 27, 2022 at 07:31 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Host: localhost:3306
+-- Generation Time: Jan 23, 2023 at 02:57 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cbsphp`
+-- Database: `hms`
 --
 
 -- --------------------------------------------------------
@@ -27,16 +28,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booking_list` (
-  `id` int(30) NOT NULL,
+  `id` int NOT NULL,
   `ref_code` varchar(100) NOT NULL,
-  `client_id` int(30) NOT NULL,
-  `cab_id` int(30) NOT NULL,
+  `client_id` int NOT NULL,
+  `cab_id` int NOT NULL,
   `pickup_zone` text NOT NULL,
   `drop_zone` text NOT NULL,
-  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0 = Pending,\r\n1 = Driver has Confirmed,\r\n2 = Pickup,\r\n3 = drop-off,\r\n4 = cancelled',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '0 = Pending,\r\n1 = Driver has Confirmed,\r\n2 = Pickup,\r\n3 = drop-off,\r\n4 = cancelled',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `booking_list`
@@ -65,7 +66,8 @@ INSERT INTO `booking_list` (`id`, `ref_code`, `client_id`, `cab_id`, `pickup_zon
 (21, '202203-00013', 4, 9, '31 Roosevelt Wilson Lane', '26 Aviation Way', 2, '2022-03-27 21:42:40', '2022-03-27 21:44:22'),
 (22, '202203-00013', 9, 1, '98 Holt Street', '83 Monroe Avenue', 2, '2022-03-27 21:43:44', '2022-03-27 21:45:22'),
 (23, '202203-00013', 12, 14, '487 Shadowmor Drive', '767 Walkers Ridge Way', 3, '2022-03-27 22:50:55', '2022-03-27 22:53:23'),
-(24, '202203-00013', 12, 6, '144 Test Location', '522 Test Location', 4, '2022-03-27 22:54:41', '2022-03-27 22:54:51');
+(24, '202203-00013', 12, 6, '144 Test Location', '522 Test Location', 4, '2022-03-27 22:54:41', '2022-03-27 22:54:51'),
+(25, '202301-00001', 18, 3, 'Bogura', 'Dhaka', 0, '2023-01-23 12:58:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -74,9 +76,9 @@ INSERT INTO `booking_list` (`id`, `ref_code`, `client_id`, `cab_id`, `pickup_zon
 --
 
 CREATE TABLE `cab_list` (
-  `id` int(30) NOT NULL,
+  `id` int NOT NULL,
   `reg_code` varchar(100) NOT NULL,
-  `category_id` int(30) NOT NULL,
+  `category_id` int NOT NULL,
   `cab_reg_no` varchar(200) NOT NULL,
   `body_no` varchar(100) NOT NULL,
   `cab_model` text NOT NULL,
@@ -89,7 +91,7 @@ CREATE TABLE `cab_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT '0',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `cab_list`
@@ -97,7 +99,7 @@ CREATE TABLE `cab_list` (
 
 INSERT INTO `cab_list` (`id`, `reg_code`, `category_id`, `cab_reg_no`, `body_no`, `cab_model`, `cab_driver`, `driver_contact`, `driver_address`, `password`, `image_path`, `status`, `delete_flag`, `date_created`, `date_updated`) VALUES
 (1, '202202-00002', 1, 'ASTR0306', 'Fusion-130', 'Ford Fusion', 'Mark Cooper', '09123456789', '94 Chestnut Street', '5f4dcc3b5aa765d61d8327deb882cf99', 'uploads/dirvers/1.png?v=1644981064', 1, 0, '2022-03-02 10:59:12', '2022-03-27 22:04:44'),
-(2, '202202-00001', 2, 'ASTR0715', 'Camry-440', 'Toyota Camry', 'George Williams', '09456987123', '69 Nixon Avenue', '7ad1aea197a92805ac70f71bdec579d3', 'uploads/dirvers/2.png?v=1644981833', 1, 0, '2022-03-02 11:13:30', '2022-03-27 22:04:51'),
+(2, '202202-00001', 2, 'ASTR0715', 'Camry-440', 'Toyota Camry', 'George Williams', '09456987123', '69 Nixon Avenue', '7ad1aea197a92805ac70f71bdec579d3', 'uploads/dirvers/2.png?v=1644981833', 1, 1, '2022-03-02 11:13:30', '2023-01-23 12:45:16'),
 (3, '202203-00001', 1, 'ASTR0123', 'Prius-1010', 'Toyota Prius', 'Henry', '7485658965', '12 Fincham Road', '5f4dcc3b5aa765d61d8327deb882cf99', 'uploads/dirvers/3.png?v=1648051050', 1, 0, '2022-03-02 21:42:30', '2022-03-27 22:05:00'),
 (4, '202203-00002', 1, 'ASTR0770', 'Soul-009', 'Kia Soul', 'Lexie Luthor', '7896478540', '70 Star Trek Drive', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-02 21:59:17', '2022-03-27 14:44:37'),
 (5, '202203-00003', 1, 'ASTR0741', 'Civic-7781', 'Honda Civic', 'Allen S. Nichols', '7895410000', '74 Frosty Lane', '5f4dcc3b5aa765d61d8327deb882cf99', 'uploads/dirvers/5.png?v=1648311707', 1, 0, '2022-03-02 22:06:47', '2022-03-27 14:44:40'),
@@ -118,14 +120,14 @@ INSERT INTO `cab_list` (`id`, `reg_code`, `category_id`, `cab_reg_no`, `body_no`
 --
 
 CREATE TABLE `category_list` (
-  `id` int(30) NOT NULL,
+  `id` int NOT NULL,
   `name` text NOT NULL,
   `description` text NOT NULL,
   `delete_flag` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `category_list`
@@ -143,7 +145,7 @@ INSERT INTO `category_list` (`id`, `name`, `description`, `delete_flag`, `status
 --
 
 CREATE TABLE `client_list` (
-  `id` int(30) NOT NULL,
+  `id` int NOT NULL,
   `firstname` text NOT NULL,
   `middlename` text,
   `lastname` text NOT NULL,
@@ -157,7 +159,7 @@ CREATE TABLE `client_list` (
   `delete_flag` tinyint(1) NOT NULL DEFAULT '0',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_added` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `client_list`
@@ -180,7 +182,8 @@ INSERT INTO `client_list` (`id`, `firstname`, `middlename`, `lastname`, `gender`
 (14, 'John', 'H.', 'Hampton', 'Male', '4789652210', '50 Pooh Bear Lane', 'johnhm@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-27 22:20:32', NULL),
 (15, 'Maria', 'J.', 'Connors', 'Female', '1478523655', '76 Richland Avenue', 'mariaj@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-27 22:21:08', NULL),
 (16, 'Karen', 'M.', 'Brewer', 'Female', '1458888888', '591 Leisure Lane', 'karenb@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-27 22:21:53', NULL),
-(17, 'Norma', 'K.', 'Gravelle', 'Female', '1458965555', '66 Blane Street', 'normak@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-27 22:24:54', NULL);
+(17, 'Norma', 'K.', 'Gravelle', 'Female', '1458965555', '66 Blane Street', 'normak@mail.com', '5f4dcc3b5aa765d61d8327deb882cf99', NULL, 1, 0, '2022-03-27 22:24:54', NULL),
+(18, 'Code', 'Camp', 'BD', 'Male', '6546516151', 'Dhaka Bangladesh', 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', NULL, 1, 0, '2023-01-23 12:57:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -189,10 +192,10 @@ INSERT INTO `client_list` (`id`, `firstname`, `middlename`, `lastname`, `gender`
 --
 
 CREATE TABLE `system_info` (
-  `id` int(30) NOT NULL,
+  `id` int NOT NULL,
   `meta_field` text NOT NULL,
   `meta_value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `system_info`
@@ -212,7 +215,7 @@ INSERT INTO `system_info` (`id`, `meta_field`, `meta_value`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(50) NOT NULL,
+  `id` int NOT NULL,
   `firstname` varchar(250) NOT NULL,
   `lastname` varchar(250) NOT NULL,
   `username` text NOT NULL,
@@ -222,14 +225,14 @@ CREATE TABLE `users` (
   `type` tinyint(1) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `password`, `avatar`, `last_login`, `type`, `date_added`, `date_updated`) VALUES
-(1, 'Adminstrator', 'Liam', 'admin', 'd00f5d5217896fb7fd601412cb890830', 'uploads/1624000_adminicn.png', NULL, 1, '2022-01-19 14:02:37', '2022-03-27 21:51:35'),
+(1, 'Adminstrator', 'Code Camp BD', 'admin', '8997e58820cbf3f88a4ed14f0096b988', 'uploads/1624000_adminicn.png', NULL, 1, '2022-01-19 14:02:37', '2023-01-23 12:55:42'),
 (8, 'Martha', 'Heath', 'martha', '3003051F6D158F6687B8A820C46BFA80', 'uploads/avatar-8.png?v=1648396920', NULL, 2, '2022-03-01 16:14:00', '2022-03-27 21:47:00'),
 (9, 'Andrew', 'Stokes', 'andrew', '5f4dcc3b5aa765d61d8327deb882cf99', 'uploads/avatar-9.png?v=1648396901', NULL, 2, '2022-03-27 21:46:41', '2022-03-27 21:46:41');
 
@@ -263,7 +266,7 @@ ALTER TABLE `category_list`
 --
 ALTER TABLE `client_list`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`) USING HASH;
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `system_info`
@@ -285,32 +288,38 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booking_list`
 --
 ALTER TABLE `booking_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
 --
 -- AUTO_INCREMENT for table `cab_list`
 --
 ALTER TABLE `cab_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `category_list`
 --
 ALTER TABLE `category_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `client_list`
 --
 ALTER TABLE `client_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `system_info`
 --
 ALTER TABLE `system_info`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- Constraints for dumped tables
 --
@@ -327,6 +336,7 @@ ALTER TABLE `booking_list`
 --
 ALTER TABLE `cab_list`
   ADD CONSTRAINT `cab_list_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category_list` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
