@@ -46,8 +46,6 @@ Author : MH RONY <br/> Website Link: https://developerrony.com <br /> GitHub Lin
 
 ![screencapture-localhost-CabBooking-PHP-login-php-2023-01-23-21_04_50](https://user-images.githubusercontent.com/78216965/214074223-365e657d-b002-43dd-b3d2-fbadc32810cf.png)
 
-![screencapture-localhost-CabBooking-PHP-2023-01-23-21_04_17](https://user-images.githubusercontent.com/78216965/214074250-c48f0b92-8947-4561-be88-1090dfc282c9.png)
-
 ![screencapture-localhost-CabBooking-PHP-admin-2023-01-23-21_07_32](https://user-images.githubusercontent.com/78216965/214074267-82a76ee4-e2be-4bb8-920f-c8ca7fa50e9f.png)
 
 ![screencapture-localhost-CabBooking-PHP-admin-2023-01-23-21_07_18](https://user-images.githubusercontent.com/78216965/214074282-9efde5b8-f744-47cd-85f0-3b84a51e773d.png)
