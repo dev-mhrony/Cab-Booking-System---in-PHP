@@ -1,0 +1,15 @@
+**Log on to https://github.com/dev-mhrony for more projects!***
+
+**Database Name: cbsphp**
+
+**Developed by MH RONY**
+
+**Recommended PHP Version 7.4 + **
+
+
+**Admin Login Details**
+
+Username: admin
+Password: Watch Youtube Video
+
+**Driver's Reg.Code can be found under Cab Management Section**
